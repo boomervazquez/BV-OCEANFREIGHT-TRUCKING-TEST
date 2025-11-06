@@ -273,10 +273,13 @@ document.addEventListener('click', (e) => {
 // Find trucking rates for a destination
 function findTruckingRates(facility, finalDest) {
   const normalizedDest = normalize(finalDest);
-  return truckingRows.filter(row => 
-    row.facility === facility && normalize(row.dest).includes(normalizedDest)
+  const normalizedFacility = normalize(facility);
+  return truckingRows.filter(row =>
+    normalize(row.facility) === normalizedFacility &&
+    normalize(row.dest).includes(normalizedDest)
   );
 }
+
 
 // Find port for a city destination
 function findPortForCity(oceanDest, cityDest) {
